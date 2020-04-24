@@ -29,17 +29,18 @@ def process_file(filename,device,output_folder):
     data['url'] = "https://resources.rob-balmbra.co.uk/ROM/" + str(date) + "/" + rom_filename
 
   build_folder = os.path.join(output_folder,"builds")
+  if not os.path.exists(build_folder):
+    try:
+      os.makedirs(build_folder)
+    except:
+      pass
+
   change_folder = os.path.join(output_folder,"changelogs",device)
-
-  try:
-    os.makedirs(build_folder)
-  except:
-    pass
-
-  try:
-    os.makedirs(change_folder)
-  except:
-    pass
+  if not os.path.exists(change_folder):
+    try:
+      os.makedirs(change_folder)
+    except:
+      pass
 
   # Dump data
   file_out = os.path.join(build_folder,device + ".json")
@@ -65,6 +66,15 @@ if not os.path.isdir(folder_in):
 if not os.path.isdir(folder_out):
   print("Error - " + folder_out + " isn't a valid output directory.")
   sys.exit(2);
+
+# Check if user has access to output and input directory
+if not os.access(folder_out, os.W_OK):
+  print("Error - " + folder_out + "isn't writeable")
+  sys.exit(3)
+
+if not os.access(folder_out, os.R_OK):
+  print("Error - " + folder_in + "isn't readable")
+  sys.exit(4)
 
 # Iterate over files within folder_in
 print(sys.argv[0] + " - Processing files ...");
