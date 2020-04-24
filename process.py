@@ -26,7 +26,7 @@ def process_file(filename,device,output_folder,gitrepo):
     data['maintainer'] = "Robert Balmbra"
     data['maintainer_url'] = "https://forum.xda-developers.com/member.php?u=4834466"
     data['telegram_username'] = "robbalmbra"
-    data['url'] = "https://resources.rob-balmbra.co.uk/ROM/" + str(date) + "/" + rom_filename
+    data['url'] = gitrepo + "ROMS/" + str(date) + "/" + rom_filename
 
   build_folder = os.path.join(output_folder,"builds")
   if not os.path.exists(build_folder):
