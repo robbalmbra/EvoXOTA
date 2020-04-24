@@ -55,7 +55,7 @@ def process_file(filename,device,output_folder,gitrepo):
     os.makedirs(rom_specific_folder)
   
   # Copy file to rom directory
-  os.system("cp" + filename.replace(".zip.json",".zip") + " " + rom_specific_folder)
+  os.system("cp " + filename.replace(".zip.json",".zip") + " " + rom_specific_folder)
 
 # Checks
 if len(sys.argv) < 4:
