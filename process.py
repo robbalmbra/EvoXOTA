@@ -107,3 +107,7 @@ for folder1 in os.listdir(folder_in):
 # Error check
 if count == 0:
   print(sys.argv[0] + " - Failed to process any files.");
+else:
+  # Auto push to github if repo has been initialized within output directory
+  if os.path.exists(os.path.join(folder_out,".git")):
+    os.system("cd " + folder_out + "; git commit -am \"auto push\"; git push --force")
