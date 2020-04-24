@@ -8,7 +8,7 @@ import json
 from datetime import datetime
 
 # Process file and create json output
-def process_file(filename,device,output_folder):
+def process_file(filename,device,output_folder,gitrepo):
   with open(filename, 'r+') as f:
 
     data = json.load(f)
@@ -89,7 +89,7 @@ for folder1 in os.listdir(folder_in):
   folder1_path = os.path.join(folder_in,folder1)
   for filename in os.listdir(folder1_path):
     if filename.endswith('.zip.json'):
-      process_file(os.path.join(folder1_path,filename),folder1,folder_out);
+      process_file(os.path.join(folder1_path,filename),folder1,folder_out,git_repo);
       count=count+1
 
 # Error check
