@@ -2,7 +2,7 @@
 
 ## Description
 
-Create structure and json files for unofficial builds of evox.
+Create structure and json files for unofficial builds of evox. Auto pushes to git repo if git has been initialized within the output directory.
 
 ## Usage
 
