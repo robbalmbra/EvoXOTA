@@ -6,4 +6,4 @@ Create structure and json files for unofficial builds of evox.
 
 ## Usage
 
-python3 process.py [INPUT DIRECTORY] [OUTPUT DIRECTORY] [GITREPO]
+python3 process.py [INPUT DIRECTORY] [OUTPUT DIRECTORY] [GIT REPO]
