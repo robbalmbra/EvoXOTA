@@ -76,6 +76,11 @@ if not os.access(folder_out, os.R_OK):
   print("Error - " + folder_in + "isn't readable")
   sys.exit(4)
 
+# Create rom directory for zips to be uploaded to
+rom_directory = os.path.join(folder_in,"ROMS") 
+if not os.path.exists(rom_directory):
+  os.makedirs(rom_directory)
+
 # Iterate over files within folder_in
 print(sys.argv[0] + " - Processing files ...");
 count=0
