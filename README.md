@@ -1,9 +1,9 @@
 # EvoXOTA
 
-# Description
+## Description
 
 Create structure and json files for unofficial builds of evox.
 
-# Usage
+## Usage
 
 python3 process.py [INPUT DIRECTORY] [OUTPUT DIRECTORY]
