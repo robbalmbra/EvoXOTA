@@ -50,12 +50,13 @@ def process_file(filename,device,output_folder):
   open(os.path.join(change_folder,rom_filename).replace(".zip",".txt"),'a').close()
 
 # Checks
-if len(sys.argv) < 3:
-  print("USAGE: " + sys.argv[0] + " [FOLDER IN] [FOLDER_OUT]");
+if len(sys.argv) < 4:
+  print("USAGE: " + sys.argv[0] + " [FOLDER IN] [FOLDER_OUT] [GIT REPO]");
   sys.exit(1);
 
 folder_in=sys.argv[1];
 folder_out=sys.argv[2];
+git_repo=sys.argv[3];
 
 # Check if in folder exists
 if not os.path.isdir(folder_in):
