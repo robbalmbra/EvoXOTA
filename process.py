@@ -26,7 +26,7 @@ def process_file(filename,device,output_folder,gitrepo):
     data['maintainer'] = "Robert Balmbra"
     data['maintainer_url'] = "https://forum.xda-developers.com/member.php?u=4834466"
     data['telegram_username'] = "robbalmbra"
-    data['url'] = gitrepo + "ROMS/" + str(date) + "/" + rom_filename
+    data['url'] = gitrepo + os.path.join("ROMS/",str(device),str(date),rom_filename)
 
   build_folder = os.path.join(output_folder,"builds")
   if not os.path.exists(build_folder):
@@ -48,6 +48,14 @@ def process_file(filename,device,output_folder,gitrepo):
     json.dump(data, f, indent=2, sort_keys=True)
 
   open(os.path.join(change_folder,rom_filename).replace(".zip",".txt"),'a').close()
+  
+  # Copy rom file to ROMS directory
+  rom_specific_folder = os.path.join(output_folder,"ROMS",str(device),str(date))
+  if not os.path.exists(rom_specific_folder):
+    os.makedirs(rom_specific_folder)
+  
+  # Copy file to rom directory
+  os.system("cp" + filename.replace(".zip.json",".zip") + " " + rom_specific_folder)
 
 # Checks
 if len(sys.argv) < 4:
