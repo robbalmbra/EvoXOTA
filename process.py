@@ -47,7 +47,7 @@ def process_file(filename,device,output_folder,sf_repo,sf_uname):
   with open(file_out,'w') as f:
     json.dump(data, f, indent=2, sort_keys=True)
 
-  open(os.path.join(change_folder,rom_filename).replace(".zip",".txt"),'a').close()
+  open(os.path.join(change_folder,rom_filename).replace(".zip",".zip.txt"),'a').close()
   
   # Copy file to source forge by ssh connection using public/private key and username
   
