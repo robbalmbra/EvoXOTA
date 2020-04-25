@@ -94,9 +94,9 @@ if not "https://sourceforge.net/projects/" in sf_repo:
   print("Error - " + sf_repo + " isn't valid\n e.g: https://raw.githubusercontent.com/robbalmbra/EvoXOTA/");
   sys.exit(5)
 
-if not os.path.exists("~/.ssh/id_rsa"):
-  print("Error - ssh private key doesn't exist");
-  sys.exit(6)                             
+#if not os.path.exists("~/.ssh/id_rsa"):
+#  print("Error - ssh private key doesn't exist");
+#  sys.exit(6)                             
                              
 # Create rom directory for zips to be uploaded to
 rom_directory = os.path.join(folder_in,"ROMS") 
@@ -118,5 +118,5 @@ if count == 0:
   print(sys.argv[0] + " - Failed to process any files.");
 else:
   # Auto push to github if repo has been initialized within output directory
-  if os.path.exists(os.path.join(folder_out,".git")):
-    os.system("cd \"" + folder_out + "\"; git commit -am \"auto push\"; git push -f origin master")
+  #if os.path.exists(os.path.join(folder_out,".git")):
+  #  os.system("cd \"" + folder_out + "\"; git commit -am \"auto push\"; git push -f origin master")
