@@ -8,7 +8,7 @@ import json
 from datetime import datetime
 
 # Process file and create json output
-def process_file(filename,device,output_folder,gitrepo):
+def process_file(filename,device,output_folder,sf_repo):
   with open(filename, 'r+') as f:
 
     data = json.load(f)
@@ -26,7 +26,7 @@ def process_file(filename,device,output_folder,gitrepo):
     data['maintainer'] = "Robert Balmbra"
     data['maintainer_url'] = "https://forum.xda-developers.com/member.php?u=4834466"
     data['telegram_username'] = "robbalmbra"
-    data['url'] = gitrepo + os.path.join("master","ROMS",str(device),str(date),rom_filename)
+    data['url'] = sf_repo + os.path.join("devices",str(device),str(date),rom_filename)+"/download"
 
   build_folder = os.path.join(output_folder,"builds")
   if not os.path.exists(build_folder):
@@ -49,22 +49,17 @@ def process_file(filename,device,output_folder,gitrepo):
 
   open(os.path.join(change_folder,rom_filename).replace(".zip",".txt"),'a').close()
   
-  # Copy rom file to ROMS directory
-  rom_specific_folder = os.path.join(output_folder,"ROMS",str(device),str(date))
-  if not os.path.exists(rom_specific_folder):
-    os.makedirs(rom_specific_folder)
-  
-  # Copy file to rom directory
+  # Copy file to source forge by ssh connection using public/private key and username
   os.system("cp " + filename.replace(".zip.json",".zip") + " " + rom_specific_folder)
 
 # Checks
-if len(sys.argv) < 4:
-  print("USAGE: " + sys.argv[0] + " [FOLDER IN] [FOLDER_OUT] [GIT REPO]");
+if len(sys.argv) < 5:
+  print("USAGE: " + sys.argv[0] + " [FOLDER IN] [FOLDER_OUT] [SOURCEFORGE PROJECT] [SOURCEFORGE SSH USERNAME]");
   sys.exit(1);
 
 folder_in=sys.argv[1];
 folder_out=sys.argv[2];
-git_repo=sys.argv[3];
+sf_repo=sys.argv[3];
 
 # Check if in folder exists
 if not os.path.isdir(folder_in):
@@ -85,8 +80,8 @@ if not os.access(folder_out, os.R_OK):
   print("Error - " + folder_in + "isn't readable")
   sys.exit(4)
 
-if not "https://raw.githubusercontent.com/" in git_repo:
-  print("Error - " + git_repo + " isn't valid\n e.g: https://raw.githubusercontent.com/robbalmbra/EvoXOTA/");
+if not "https://sourceforge.net/projects/" in git_repo:
+  print("Error - " + sf_repo + " isn't valid\n e.g: https://raw.githubusercontent.com/robbalmbra/EvoXOTA/");
   sys.exit(5)
 
 # Create rom directory for zips to be uploaded to
@@ -101,7 +96,7 @@ for folder1 in os.listdir(folder_in):
   folder1_path = os.path.join(folder_in,folder1)
   for filename in os.listdir(folder1_path):
     if filename.endswith('.zip.json'):
-      process_file(os.path.join(folder1_path,filename),folder1,folder_out,git_repo);
+      process_file(os.path.join(folder1_path,filename),folder1,folder_out,sf_repo);
       count=count+1
 
 # Error check
