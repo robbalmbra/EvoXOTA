@@ -52,14 +52,14 @@ def process_file(filename,device,output_folder,sf_repo,sf_uname):
   # Copy file to source forge by ssh connection using public/private key and username
   
   # Create folder structure for device
-  #project = os.path.basename(os.path.normpath(sf_repo))
+  project = os.path.basename(os.path.normpath(sf_repo))
   
   #device_folder = os.path.join("/home/frs/project/",str(project),"devices",str(device),str(date))         
-  #os.system("ssh " + sf_uname + "@frs.sourceforge.net mkdir -p " + device_folder)
+  os.system("ssh " + sf_uname + "@frs.sourceforge.net mkdir -p " + device_folder)
   
   # Copy file to created directory
-  #print("Uploading " + filename.replace(".zip.json",".zip") + " to " + device_folder)
-  #os.system("scp " + filename.replace(".zip.json",".zip") + " " + sf_uname + "@frs.sourceforge.net:" + device_folder)
+  print("Uploading " + filename.replace(".zip.json",".zip") + " to " + device_folder)
+  os.system("scp " + filename.replace(".zip.json",".zip") + " " + sf_uname + "@frs.sourceforge.net:" + device_folder)
 
 # Checks
 if len(sys.argv) < 5:
@@ -94,9 +94,9 @@ if not "https://sourceforge.net/projects/" in sf_repo:
   print("Error - " + sf_repo + " isn't valid\n e.g: https://raw.githubusercontent.com/robbalmbra/EvoXOTA/");
   sys.exit(5)
 
-#if not os.path.exists("~/.ssh/id_rsa"):
-#  print("Error - ssh private key doesn't exist");
-#  sys.exit(6)                             
+if not os.path.exists("~/.ssh/id_rsa"):
+  print("Error - ssh private key doesn't exist");
+  sys.exit(6)                             
                              
 # Create rom directory for zips to be uploaded to
 rom_directory = os.path.join(folder_in,"ROMS") 
@@ -118,6 +118,5 @@ if count == 0:
   print(sys.argv[0] + " - Failed to process any files.");
 else:
   # Auto push to github if repo has been initialized within output directory
-  #if os.path.exists(os.path.join(folder_out,".git")):
-  #  os.system("cd \"" + folder_out + "\"; git commit -am \"auto push\"; git push -f origin master")
-  pass
+  if os.path.exists(os.path.join(folder_out,".git")):
+    os.system("cd \"" + folder_out + "\"; git commit -am \"auto push\"; git push -f origin master")
