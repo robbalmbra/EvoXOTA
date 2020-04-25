@@ -57,6 +57,7 @@ def process_file(filename,device,output_folder,sf_repo,sf_uname):
   os.system("ssh " + sf_uname + "@frs.sourceforge.net mkdir -p " + device_folder)
   
   # Copy file to created directory
+  print("Uploading " + filename.replace(".zip.json",".zip") + " to " + device_folder)
   os.system("scp " + filename.replace(".zip.json",".zip") + " " + sf_uname + "@frs.sourceforge.net:" + device_folder)
 
 # Checks
