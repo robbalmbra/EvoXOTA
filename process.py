@@ -8,7 +8,7 @@ import json
 from datetime import datetime
 
 # Process file and create json output
-def process_file(filename,device,output_folder,sf_repo):
+def process_file(filename,device,output_folder,sf_repo,sf_uname):
   with open(filename, 'r+') as f:
 
     data = json.load(f)
@@ -50,7 +50,14 @@ def process_file(filename,device,output_folder,sf_repo):
   open(os.path.join(change_folder,rom_filename).replace(".zip",".txt"),'a').close()
   
   # Copy file to source forge by ssh connection using public/private key and username
-  os.system("cp " + filename.replace(".zip.json",".zip") + " " + rom_specific_folder)
+  
+  # Create folder structure for device
+  project = os.path.basename(os.path.normpath(sf_repo)
+  device_folder = os.path.join("/home/frs/project/",str(project),"devices",str(device),str(date));                  
+  os.system("ssh " + sf_uname + "@frs.sourceforge.net mkdir -p " + device_folder)
+  
+  # Copy file to created directory
+  os.system("scp " + filename.replace(".zip.json",".zip") + " " + sf_uname + "@frs.sourceforge.net:/" + device_folder)
 
 # Checks
 if len(sys.argv) < 5:
@@ -60,6 +67,7 @@ if len(sys.argv) < 5:
 folder_in=sys.argv[1];
 folder_out=sys.argv[2];
 sf_repo=sys.argv[3];
+sf_uname=sys.argv[4]
 
 # Check if in folder exists
 if not os.path.isdir(folder_in):
@@ -96,7 +104,7 @@ for folder1 in os.listdir(folder_in):
   folder1_path = os.path.join(folder_in,folder1)
   for filename in os.listdir(folder1_path):
     if filename.endswith('.zip.json'):
-      process_file(os.path.join(folder1_path,filename),folder1,folder_out,sf_repo);
+      process_file(os.path.join(folder1_path,filename),folder1,folder_out,sf_repo,sf_uname);
       count=count+1
 
 # Error check
