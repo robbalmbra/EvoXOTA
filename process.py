@@ -90,7 +90,7 @@ if not os.access(folder_out, os.R_OK):
   print("Error - " + folder_in + "isn't readable")
   sys.exit(4)
 
-if not "https://sourceforge.net/projects/" in git_repo:
+if not "https://sourceforge.net/projects/" in sf_repo:
   print("Error - " + sf_repo + " isn't valid\n e.g: https://raw.githubusercontent.com/robbalmbra/EvoXOTA/");
   sys.exit(5)
 
