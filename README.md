@@ -6,5 +6,5 @@ Create structure and json files for unofficial builds of evox. Auto pushes to gi
 
 ## Usage
 
-    python3 process.py [INPUT DIRECTORY] [OUTPUT DIRECTORY] [GIT REPO]
-    python3 process.py rom/out/target/product/ ota/ https://raw.githubusercontent.com/robbalmbra/EvoXOTA/
+    python3 process.py [INPUT DIRECTORY] [OUTPUT DIRECTORY] [SOURCEFORGE PROJECT]
+    python3 process.py rom/out/target/product/ ota/ https://sourceforge.net/projects/evo9810ota/files/devices/
