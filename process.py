@@ -120,3 +120,4 @@ else:
   # Auto push to github if repo has been initialized within output directory
   #if os.path.exists(os.path.join(folder_out,".git")):
   #  os.system("cd \"" + folder_out + "\"; git commit -am \"auto push\"; git push -f origin master")
+  pass
