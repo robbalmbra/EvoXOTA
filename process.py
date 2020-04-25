@@ -52,7 +52,7 @@ def process_file(filename,device,output_folder,sf_repo,sf_uname):
   # Copy file to source forge by ssh connection using public/private key and username
   
   # Create folder structure for device
-  project = os.path.basename(os.path.normpath(sf_repo))
+  #project = os.path.basename(os.path.normpath(sf_repo))
   
   #device_folder = os.path.join("/home/frs/project/",str(project),"devices",str(device),str(date))         
   #os.system("ssh " + sf_uname + "@frs.sourceforge.net mkdir -p " + device_folder)
