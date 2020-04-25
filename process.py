@@ -93,8 +93,8 @@ if not "https://sourceforge.net/projects/" in git_repo:
   print("Error - " + sf_repo + " isn't valid\n e.g: https://raw.githubusercontent.com/robbalmbra/EvoXOTA/");
   sys.exit(5)
 
-if not os.path.exists("~/.ssh/id_rsa.pub"):
-  print("Error - ssh keys dont exist");
+if not os.path.exists("~/.ssh/id_rsa"):
+  print("Error - ssh private key doesn't exist");
   sys.exit(6)                             
                              
 # Create rom directory for zips to be uploaded to
