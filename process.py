@@ -57,7 +57,7 @@ def process_file(filename,device,output_folder,sf_repo,sf_uname):
   device_folder = os.path.join("/home/frs/project/",str(project),"files","devices",str(device),str(date))
     
   print(device_folder)
-  print("sftp -o \"StrictHostKeyChecking no\" " + sf_uname + "@frs.sourceforge.net << EOF \n mkdir " + device_folder + "\n EOF")
+  os.system("sftp -o \"StrictHostKeyChecking no\" " + sf_uname + "@frs.sourceforge.net << EOF \n mkdir " + device_folder + "\nEOF")
   
   # Copy file to created directory
   #print("Uploading " + filename.replace(".zip.json",".zip") + " to " + device_folder)
