@@ -56,7 +56,7 @@ def process_file(filename,device,output_folder,sf_repo,sf_uname):
   
   device_folder = os.path.join("/home/frs/project/",str(project),"devices",str(device),str(date))
   
-  print device_folder
+  print(device_folder)
   #os.system("ssh -o \"StrictHostKeyChecking no\" " + sf_uname + "@frs.sourceforge.net mkdir -p " + device_folder)
   
   # Copy file to created directory
