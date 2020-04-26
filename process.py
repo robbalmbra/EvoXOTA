@@ -60,8 +60,8 @@ def process_file(filename,device,output_folder,sf_repo,sf_uname):
   os.system("sftp -o \"StrictHostKeyChecking no\" " + sf_uname + "@frs.sourceforge.net << EOF \ncd " + device_folder + "\nmkdir " + str(date) + "\nEOF")
   
   # Copy file to created directory
-  #print("Uploading " + filename.replace(".zip.json",".zip") + " to " + device_folder)
-  #os.system("scp -o \"StrictHostKeyChecking no\" " + filename.replace(".zip.json",".zip") + " " + sf_uname + "@frs.sourceforge.net:" + device_folder)
+  print("Uploading " + filename.replace(".zip.json",".zip") + " to " + device_folder + "/" + data)
+  os.system("scp -o \"StrictHostKeyChecking no\" " + filename.replace(".zip.json",".zip") + " " + sf_uname + "@frs.sourceforge.net:" + device_folder + "/" + date)
 
 # Checks
 if len(sys.argv) < 5:
