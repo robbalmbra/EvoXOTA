@@ -89,8 +89,6 @@ if not os.access(folder_out, os.W_OK):
 if not os.access(folder_out, os.R_OK):
   print("Error - " + folder_in + "isn't readable")
   sys.exit(4)
-
-os.system("ls ~/.ssh/")  
   
 if not "https://sourceforge.net/projects/" in sf_repo:
   print("Error - " + sf_repo + " isn't valid\n e.g: https://sourceforge.net/projects/evo9810ota/files/devices/");
