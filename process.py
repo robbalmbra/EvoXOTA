@@ -61,7 +61,7 @@ def process_file(filename,device,output_folder,sf_repo,sf_uname):
   
   # Copy file to created directory
   print("Uploading " + filename.replace(".zip.json",".zip") + " to " + device_folder + "/" + data)
-  os.system("scp -o \"StrictHostKeyChecking no\" " + filename.replace(".zip.json",".zip") + " " + sf_uname + "@frs.sourceforge.net:" + device_folder + "/" + date)
+  os.system("scp -o \"StrictHostKeyChecking no\" " + filename.replace(".zip.json",".zip") + " " + sf_uname + "@frs.sourceforge.net:" + device_folder + "/" + str(date))
 
 # Checks
 if len(sys.argv) < 5:
