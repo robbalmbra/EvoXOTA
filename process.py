@@ -26,7 +26,7 @@ def process_file(filename,device,output_folder,sf_repo,sf_uname):
     data['maintainer'] = "Robert Balmbra"
     data['maintainer_url'] = "https://forum.xda-developers.com/member.php?u=4834466"
     data['telegram_username'] = "robbalmbra"
-    data['url'] = sf_repo + os.path.join("files",str(device),str(date),rom_filename)+"/download"
+    data['url'] = sf_repo + os.path.join("files","devices",str(device),str(date),rom_filename)+"/download"
 
   build_folder = os.path.join(output_folder,"builds")
   if not os.path.exists(build_folder):
