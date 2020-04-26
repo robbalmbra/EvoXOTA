@@ -55,11 +55,11 @@ def process_file(filename,device,output_folder,sf_repo,sf_uname):
   project = os.path.basename(os.path.normpath(sf_repo))
   
   device_folder = os.path.join("/home/frs/project/",str(project),"devices",str(device),str(date))         
-  os.system("ssh " + sf_uname + "@frs.sourceforge.net mkdir -p " + device_folder)
+  os.system("ssh -o \"StrictHostKeyChecking no\" " + sf_uname + "@frs.sourceforge.net mkdir -p " + device_folder)
   
   # Copy file to created directory
   print("Uploading " + filename.replace(".zip.json",".zip") + " to " + device_folder)
-  os.system("scp " + filename.replace(".zip.json",".zip") + " " + sf_uname + "@frs.sourceforge.net:" + device_folder)
+  os.system("scp -o \"StrictHostKeyChecking no\" " + filename.replace(".zip.json",".zip") + " " + sf_uname + "@frs.sourceforge.net:" + device_folder)
 
 # Checks
 if len(sys.argv) < 5:
