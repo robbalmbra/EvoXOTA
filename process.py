@@ -91,7 +91,7 @@ if not os.access(folder_out, os.R_OK):
   sys.exit(4)
 
 if not "https://sourceforge.net/projects/" in sf_repo:
-  print("Error - " + sf_repo + " isn't valid\n e.g: https://raw.githubusercontent.com/robbalmbra/EvoXOTA/");
+  print("Error - " + sf_repo + " isn't valid\n e.g: https://sourceforge.net/projects/evo9810ota/files/devices/");
   sys.exit(5)
 
 if not os.path.exists("~/.ssh/id_rsa"):
