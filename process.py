@@ -56,12 +56,12 @@ def process_file(filename,device,output_folder,sf_repo,sf_uname):
   
   device_folder = os.path.join("/home/frs/project/",str(project),"devices",str(device))
     
-  print(device_folder)
-  os.system("sftp -q -o \"StrictHostKeyChecking no\" " + sf_uname + "@frs.sourceforge.net << EOF \ncd " + device_folder + "\nmkdir " + str(date) + "\nEOF")
+  #print(device_folder)
+  #os.system("sftp -q -o \"StrictHostKeyChecking no\" " + sf_uname + "@frs.sourceforge.net << EOF \ncd " + device_folder + "\nmkdir " + str(date) + "\nEOF")
   
   # Copy file to created directory
-  print("Uploading " + filename.replace(".zip.json",".zip") + " to " + device_folder + "/" + str(date))
-  os.system("scp -o \"StrictHostKeyChecking no\" " + filename.replace(".zip.json",".zip") + " " + sf_uname + "@frs.sourceforge.net:" + device_folder + "/" + str(date))
+  #print("Uploading " + filename.replace(".zip.json",".zip") + " to " + device_folder + "/" + str(date))
+  #os.system("scp -o \"StrictHostKeyChecking no\" " + filename.replace(".zip.json",".zip") + " " + sf_uname + "@frs.sourceforge.net:" + device_folder + "/" + str(date))
 
 # Checks
 if len(sys.argv) < 5:
@@ -99,11 +99,6 @@ if not "https://sourceforge.net/projects/" in sf_repo:
 if not os.path.exists(os.path.expanduser("~/.ssh/")):
   print("Error - ssh keys doesn't exist");
   sys.exit(6)                             
-                             
-# Create rom directory for zips to be uploaded to
-rom_directory = os.path.join(folder_in,"ROMS") 
-if not os.path.exists(rom_directory):
-  os.makedirs(rom_directory)
 
 # Iterate over files within folder_in
 print(sys.argv[0] + " - Processing files ...");
