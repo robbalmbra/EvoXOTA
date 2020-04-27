@@ -5,17 +5,26 @@
 import sys
 import os
 import json
+import hashlib
 from datetime import datetime
 
 # Process file and create json output
 def process_file(filename,device,output_folder,sf_repo,sf_uname):
+  
+  md5_hash = hashlib.md5()
+  with open(filename.replace(".zip.json",".zip"),"rb") as g:
+    
+    for byte_block in iter(lambda: g.read(4096),b""):
+      md5_hash.update(byte_block)
+    rom_hash = str(md5_hash.hexdigest())
+ 
   with open(filename, 'r+') as f:
 
     data = json.load(f)
     now = datetime.now()
     date = now.strftime("%d-%m-%y")
     rom_filename = os.path.basename(filename.replace(".zip.json",".zip"))
-
+    
     # Add metadata to json output
     data['website_url'] = "https://evolution-x.org"
     data['version'] = "Ten"
@@ -27,6 +36,7 @@ def process_file(filename,device,output_folder,sf_repo,sf_uname):
     data['maintainer_url'] = "https://forum.xda-developers.com/member.php?u=4834466"
     data['telegram_username'] = "robbalmbra"
     data['url'] = sf_repo + os.path.join("files","devices",str(device),str(date),rom_filename)+"/download"
+    data['filehash'] = rom_hash
 
   build_folder = os.path.join(output_folder,"builds")
   if not os.path.exists(build_folder):
