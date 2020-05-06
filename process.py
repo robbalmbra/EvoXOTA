@@ -74,14 +74,15 @@ def process_file(filename,device,output_folder,sf_repo,sf_uname):
   os.system("scp -o \"StrictHostKeyChecking no\" " + filename.replace(".zip.json",".zip") + " " + sf_uname + "@frs.sourceforge.net:" + device_folder + "/" + str(date))
 
 # Checks
-if len(sys.argv) < 5:
-  print("USAGE: " + sys.argv[0] + " [FOLDER IN] [FOLDER_OUT] [SOURCEFORGE PROJECT] [SOURCEFORGE SSH USERNAME]");
+if len(sys.argv) < 6:
+  print("USAGE: " + sys.argv[0] + " [FOLDER IN] [FOLDER_OUT] [SOURCEFORGE PROJECT] [SOURCEFORGE SSH USERNAME] [UPLOAD_NAME]");
   sys.exit(1);
 
 folder_in=sys.argv[1];
 folder_out=sys.argv[2];
 sf_repo=sys.argv[3];
-sf_uname=sys.argv[4]
+sf_uname=sys.argv[4];
+git_branch=sys.argv[5]
 
 # Check if in folder exists
 if not os.path.isdir(folder_in):
@@ -126,4 +127,4 @@ if count == 0:
 else:
   # Auto push to github if repo has been initialized within output directory
   if os.path.exists(os.path.join(folder_out,".git")):
-    os.system("cd \"" + folder_out + "\"; git add *; git commit -am \"auto push\"; git push -f origin master")
+    os.system("cd \"" + folder_out + "\"; git add *; git commit -am \"auto push\"; git push -f origin " + git_branch)
