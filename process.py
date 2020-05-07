@@ -35,7 +35,7 @@ def process_file(filename,device,output_folder,sf_repo,sf_uname,git_branch):
     data['maintainer'] = "Robert Balmbra"
     data['maintainer_url'] = "https://forum.xda-developers.com/member.php?u=4834466"
     data['telegram_username'] = "robbalmbra"
-    data['url'] = sf_repo + os.path.join("files","devices",str(device),str(date),rom_filename)+"/download"
+    data['url'] = sf_repo + os.path.join("files",git_branch,str(device),str(date),rom_filename)+"/download"
     data['filehash'] = rom_hash
 
   build_folder = output_folder
