@@ -9,7 +9,7 @@ import hashlib
 from datetime import datetime
 
 # Process file and create json output
-def process_file(filename,device,output_folder,sf_repo,sf_uname):
+def process_file(filename,device,output_folder,sf_repo,sf_uname,git_branch):
   
   md5_hash = hashlib.md5()
   with open(filename.replace(".zip.json",".zip"),"rb") as g:
@@ -38,12 +38,7 @@ def process_file(filename,device,output_folder,sf_repo,sf_uname):
     data['url'] = sf_repo + os.path.join("files","devices",str(device),str(date),rom_filename)+"/download"
     data['filehash'] = rom_hash
 
-  build_folder = os.path.join(output_folder,"builds")
-  if not os.path.exists(build_folder):
-    try:
-      os.makedirs(build_folder)
-    except:
-      pass
+  build_folder = output_folder
 
   change_folder = os.path.join(output_folder,"changelogs",device)
   if not os.path.exists(change_folder):
@@ -64,7 +59,7 @@ def process_file(filename,device,output_folder,sf_repo,sf_uname):
   # Create folder structure for device
   project = os.path.basename(os.path.normpath(sf_repo))
   
-  device_folder = os.path.join("/home/frs/project/",str(project),"devices",str(device))
+  device_folder = os.path.join("/home/frs/project/",str(project),git_branch,str(device))
     
   #print(device_folder)
   os.system("sftp -q -o \"StrictHostKeyChecking no\" " + sf_uname + "@frs.sourceforge.net << EOF \ncd " + device_folder + "\nmkdir " + str(date) + "\nEOF")
@@ -118,7 +113,7 @@ for folder1 in os.listdir(folder_in):
   folder1_path = os.path.join(folder_in,folder1)
   for filename in os.listdir(folder1_path):
     if filename.endswith('.zip.json'):
-      process_file(os.path.join(folder1_path,filename),folder1,folder_out,sf_repo,sf_uname);
+      process_file(os.path.join(folder1_path,filename),folder1,folder_out,sf_repo,sf_uname,git_branch);
       count=count+1
 
 # Error check
